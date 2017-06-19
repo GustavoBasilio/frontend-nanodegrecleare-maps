@@ -1,7 +1,16 @@
 import React from 'react';
+import Menu from './Menu';
+import MapDOM from './Map';
 
-const App = () => (
-    <h1>Hello World!</h1>
-);
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <Menu />
+                <MapDOM />
+            </div>
+        );
+    }
+}
 
 export default App;

@@ -1,4 +1,5 @@
 import css from "./assets/sass/app.scss";
+import "font-awesome-webpack";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";

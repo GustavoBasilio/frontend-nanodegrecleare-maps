@@ -5,7 +5,7 @@ import MapDOM from './Map';
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <div id="app-container">
                 <Menu />
                 <MapDOM />
             </div>

@@ -1,0 +1,9 @@
+#menu-container {
+    width: $menu_width;
+    @media screen and (max-width: $break_medium) {
+        width: $menu_width_mobile;        
+    }
+    @media screen and (max-width: $break_large) {
+        width: $menu_width_large;        
+    }
+}

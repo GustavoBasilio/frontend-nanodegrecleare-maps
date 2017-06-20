@@ -1,9 +1,22 @@
 import React from 'react';
 
-const MapDOM = () => (
-    <div>
-        <i className="fa fa-address-book" aria-hidden="true"></i>
-    </div>
-);
+class MapDOM extends React.Component {
+
+    openMenu() {
+        return function() {
+            document.getElementById("app-container").classList.toggle("menu-open");
+        };
+    }
+
+    render() {   
+        return (
+            <div>
+                <header id="header">
+                    <i className="fa fa-bars menu-open" aria-hidden="true" onClick={this.openMenu()}></i>
+                </header>
+            </div>
+        );
+    }
+}
 
 export default MapDOM;

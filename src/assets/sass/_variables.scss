@@ -1,0 +1,14 @@
+//Responsive
+$break_small: 425px;
+$break_medium: 768px;
+$break_large: 1024px;
+
+//Menu
+$menu_width: 15vw;
+$menu_width_large: 30vw;
+$menu_width_mobile: 100vw;
+
+//Functions
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}

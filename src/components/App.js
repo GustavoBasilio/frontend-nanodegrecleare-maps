@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from './Menu';
-import MapDOM from './Map';
+import MapDOM from './MapDom';
 
 class App extends React.Component {
     render() {

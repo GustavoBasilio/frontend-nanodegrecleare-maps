@@ -1,10 +1,25 @@
-#header {
-    width: 100vw;
-    background-color: #262626;
-    i.menu-open {
-        color: #429DDC;
-        padding: 20px;
-        cursor: pointer;
-        font-size: 1.2em
+#map-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    #header {
+        width: 100vw;
+        background-color: #262626;
+        height: 60px;
+        i.menu-open {
+            color: #429DDC;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 1.2em
+        }
+    }
+    #map {
+        width: 100vw;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        &>div{
+            flex-grow: 1;
+        }
     }
 }

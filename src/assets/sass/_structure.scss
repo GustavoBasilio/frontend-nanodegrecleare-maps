@@ -8,6 +8,7 @@ body {
     width: 100vw;
     #app-container {
         width: #{strip-units($menu_width)+100}vw;
+        height: 100vh;
         display: inline-flex;
         flex-direction: row;
         flex-wrap: wrap;

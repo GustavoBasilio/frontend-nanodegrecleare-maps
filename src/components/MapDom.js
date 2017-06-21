@@ -1,15 +1,18 @@
 import React from 'react';
+import { connect } from "react-redux";
 import GoogleMapReact from 'google-map-react';
+import PropTypes from 'prop-types';
+
+
+@connect((store) => {
+    return {
+        center: store.map.center,
+        bootstrapURLKeys: store.map.bootstrapURLKeys,
+        zoom: store.map.zoom
+    };
+})
 
 class MapDOM extends React.Component {
-    constructor () {
-        super();
-        this.center = [59.938043, 30.337157];
-        this.zoom = 8;
-        this.minZoom = 4;
-        this.minZoomOverride = true;
-        this.bootstrapURLKeys = {key: "AIzaSyBkUMIkAsP8A_zi654O2CUhA7s0I_QttT4"};
-    }
 
     openMenu() {
         return () => {
@@ -24,9 +27,9 @@ class MapDOM extends React.Component {
                     <i className="fa fa-bars menu-open" aria-hidden="true" onClick={this.openMenu()}></i>
                 </header>
                 <div id="map">
-                    <GoogleMapReact bootstrapURLKeys={this.bootstrapURLKeys}
-                                    center={this.center}
-                                    zoom={this.zoom}>
+                    <GoogleMapReact bootstrapURLKeys={this.props.bootstrapURLKeys}
+                                    center={this.props.center}
+                                    zoom={this.props.zoom}>
                     </GoogleMapReact>
                 </div>
             </div>

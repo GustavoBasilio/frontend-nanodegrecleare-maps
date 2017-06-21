@@ -56,8 +56,8 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {
-                    presets: ['es2016', 'react'],
-                    plugins: ['transform-decorators-legacy']
+                    presets: ["es2016", "react", "stage-0"],
+                    plugins: ["transform-class-properties", "transform-decorators-legacy"]
                 }
             }
         ]

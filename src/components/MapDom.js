@@ -14,14 +14,6 @@ import PropTypes from 'prop-types';
 
 class MapDOM extends React.Component {
 
-    static propTypes = {
-      center: PropTypes.arrayOf(PropTypes.number.isRequired()).isRequired(),
-      zoom: PropTypes.number.isRequired(),
-      bootstrapURLKeys: PropTypes.shape({
-        key:PropTypes.string.isRequired()
-      }).isRequired()
-    }
-
     openMenu() {
         return () => {
             document.getElementById("app-container").classList.toggle("menu-open");
@@ -45,4 +37,10 @@ class MapDOM extends React.Component {
     }
 }
 
+MapDOM.propTypes = {
+  center: PropTypes.array(),
+  zoom: PropTypes.number(),
+  bootstrapURLKeys: PropTypes.object()
+
+};
 export default MapDOM;

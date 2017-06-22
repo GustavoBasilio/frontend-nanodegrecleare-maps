@@ -4,10 +4,10 @@
   "description": "React-Redux Project",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel dev lint:watch",
-    "dev": "webpack-dev-server",
-    "build": "npm run clean && NODE_ENV=production webpack -p",
-    "clean": "rimraf ./dist/*",
+    "start": "node_modules/.bin/npm-run-all --parallel dev lint:watch",
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack -p",
+    "clean": "node_modules/.bin/rimraf ./dist/*",
     "lint": "node_modules/.bin/esw webpack.config.* src ds",
     "lint:watch": "npm run lint -- --watch"
   },

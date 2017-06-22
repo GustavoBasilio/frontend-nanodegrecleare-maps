@@ -7,20 +7,28 @@ import PropTypes from 'prop-types';
 @connect((store) => {
     return {
         center: store.map.center,
-        bootstrapURLKeys: store.map.bootstrapURLKeys,
-        zoom: store.map.zoom
+        zoom: store.map.zoom,
+        bootstrapURLKeys: store.map.bootstrapURLKeys
     };
 })
 
 class MapDOM extends React.Component {
+
+    static propTypes = {
+      center: PropTypes.arrayOf(PropTypes.number.isRequired()).isRequired(),
+      zoom: PropTypes.number.isRequired(),
+      bootstrapURLKeys: PropTypes.shape({
+        key:PropTypes.string.isRequired()
+      }).isRequired()
+    }
 
     openMenu() {
         return () => {
             document.getElementById("app-container").classList.toggle("menu-open");
         };
     }
-    
-    render() {   
+
+    render() {
         return (
             <div id="map-container">
                 <header id="header">

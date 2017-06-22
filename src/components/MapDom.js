@@ -38,9 +38,9 @@ class MapDOM extends React.Component {
 }
 
 MapDOM.propTypes = {
-  center: PropTypes.array(),
-  zoom: PropTypes.number(),
-  bootstrapURLKeys: PropTypes.object()
+  center: PropTypes.array,
+  zoom: PropTypes.number,
+  bootstrapURLKeys: PropTypes.object
 
 };
 export default MapDOM;

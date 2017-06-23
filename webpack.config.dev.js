@@ -31,19 +31,13 @@ module.exports = {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
-            { 
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                use: "url-loader?limit=10000&mimetype=application/font-woff" },
-            { 
-                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-                use: "file-loader"
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: "url-loader?limit=10000&mimetype=application/font-woff"
             },
             {
-                test: /\.(jpe?g|png)$/i,
-                use: [
-                    'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&outputPath=images/&publicPath=images/',
-                    'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
-                ]
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: "file-loader"
             },
             {
                 enforce: "pre",

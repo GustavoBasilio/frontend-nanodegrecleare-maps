@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node_modules/.bin/npm-run-all --parallel dev lint:watch",
     "dev": "node_modules/.bin/webpack-dev-server",
-    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack -p",
+    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack",
     "clean": "node_modules/.bin/rimraf ./dist/*",
     "lint": "node_modules/.bin/esw webpack.config.* src ds",
     "lint:watch": "npm run lint -- --watch"
@@ -26,8 +26,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
-    "redux": "^3.7.0",
-    "webpack": "^2.6.1"
+    "redux": "^3.7.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -62,6 +61,7 @@
     "style-loader": "^0.18.2",
     "uglify-js": "^3.0.19",
     "url-loader": "^0.5.9",
+    "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "^2.18.0"
   }

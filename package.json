@@ -26,7 +26,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
-    "redux": "^3.7.0"
+    "redux": "^3.7.0",
+    "webpack": "^2.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -52,15 +53,16 @@
     "image-webpack-loader": "^3.3.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
+    "locate-path": "^2.0.0",
     "node-sass": "^4.5.3",
     "npm-run-all": "^4.0.2",
-    "point-geometry": "^0.1.0",
+    "p-map": "^1.1.1",
+    "point-geometry": "0.0.0",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "uglify-js": "^2.8.29",
     "url-loader": "^0.5.9",
-    "webpack": "^3.0.0",
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "^2.18.0"
   }

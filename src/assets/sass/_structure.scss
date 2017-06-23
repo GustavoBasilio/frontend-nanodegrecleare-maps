@@ -19,17 +19,17 @@ body {
         transition: transform 0.2s ease-out;
         -webkit-transition: transform 0.2s ease-out;
         -moz-transition: transform 0.2s ease-out;
-        @media screen and (max-width: $break_medium) {
-            width: #{strip-units($menu_width_mobile)+100}vw;
-            transform: translateX(-$menu_width_mobile);
-            -webkit-transform: translateX(-$menu_width_mobile);
-            -moz-transform: translateX(-$menu_width_mobile);
-        }
         @media screen and (max-width: $break_large) {
             width: #{strip-units($menu_width_large)+100}vw;
             transform: translateX(-$menu_width_large);
             -webkit-transform: translateX(-$menu_width_large);
             -moz-transform: translateX(-$menu_width_large);
+        }
+        @media screen and (max-width: $break_medium) {
+            width: #{strip-units($menu_width_mobile)+100}vw;
+            transform: translateX(-$menu_width_mobile);
+            -webkit-transform: translateX(-$menu_width_mobile);
+            -moz-transform: translateX(-$menu_width_mobile);
         }
         &.menu-open {
             transform: translateX(0);

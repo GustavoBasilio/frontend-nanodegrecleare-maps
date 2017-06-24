@@ -1,6 +1,6 @@
-export const mapAction = (parameter) => {
+export const updateCoords = (latitude,longitude) => {
     return {
-        type: "EXEMPLE_ACTION",
-        payload: {name: parameter} 
+        type: "UPDATE_COORDS",
+        payload: [latitude, longitude]
     };
 };

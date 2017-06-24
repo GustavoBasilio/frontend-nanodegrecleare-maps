@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
 import { connect } from "react-redux";
-import GoogleMapReact from 'google-map-react';
-import PropTypes from 'prop-types';
+import store from "../store";
+import { updateCoords } from "../actions/map";
+import GoogleMapReact from "google-map-react";
+import PropTypes from "prop-types";
 
 
 @connect((store) => {
@@ -13,6 +15,19 @@ import PropTypes from 'prop-types';
 })
 
 class MapDOM extends React.Component {
+
+    componentWillMount(){
+      let geoPosition = new Promise((resolve, reject) => {
+        if(navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition((position) => {
+             resolve(position);
+           });
+        }
+      })
+      .then((position) => {
+        store.dispatch(updateCoords(position.coords.latitude,position.coords.longitude));
+      });
+    }
 
     openMenu() {
         return () => {

@@ -1,5 +1,7 @@
-import { createStore } from "redux";
-import { mapAction } from "./actions/map";
+import { applyMiddleware, createStore } from "redux";
+import logger from "redux-logger";
 import Reducers from "./reducers";
 
-export default createStore(Reducers);
+const middlewares = applyMiddleware(logger);
+
+export default createStore(Reducers, middlewares);

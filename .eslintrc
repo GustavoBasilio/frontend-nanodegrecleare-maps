@@ -18,6 +18,7 @@
     "browser": true,
     "node": true
   },
+  "globals": {"Promise": true},
   "rules": {
     "strict": 0,
     "quotes": 0,

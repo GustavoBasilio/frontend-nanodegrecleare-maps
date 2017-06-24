@@ -15,6 +15,7 @@
       display: -webkit-flex;
       flex-direction: row;
       padding: 0 10px;
+      justify-content: center;
       #input-search {
         width: 70%;
         border-bottom-left-radius: 2px;
@@ -31,6 +32,7 @@
         border-bottom-right-radius: 2px;
         border-top-right-radius: 2px;
         cursor: pointer;
+        max-width: 100px;
         i.fa-filter{
           padding-right: 10px;
         }

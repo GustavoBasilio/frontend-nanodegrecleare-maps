@@ -17,9 +17,18 @@
         width: 100vw;
         flex-grow: 1;
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
         &>div{
             flex-grow: 1;
+            i.marker {
+              font-size: 30px;
+              animation: drop-down 1s linear;
+              transform: translateY(-$makerHeight);
+            }
+            i.current-marker {
+              color: $darkBlue;
+            }
         }
     }
 }

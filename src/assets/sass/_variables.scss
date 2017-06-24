@@ -14,7 +14,8 @@ $white: #fff;
 $darkGray: #ebebeb;
 $darkBlue: #429DDC;
 
-
+//Marker
+$makerHeight: 35px;
 //Functions
 @function strip-units($number) {
   @return $number / ($number * 0 + 1);

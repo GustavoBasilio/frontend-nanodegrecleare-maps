@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import store from "../store";
-import { updateCoords } from "../actions/map";
+import { updateCoords , createCurrent} from "../actions/map";
+import Marker from "./marker";
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 
@@ -10,25 +11,32 @@ import PropTypes from "prop-types";
     return {
         center: store.map.center,
         zoom: store.map.zoom,
-        bootstrapURLKeys: store.map.bootstrapURLKeys
+        bootstrapURLKeys: store.map.bootstrapURLKeys,
+        markers: store.map.markers
     };
 })
 
 class MapDOM extends React.Component {
 
     componentWillMount(){
-      let geoPosition = new Promise((resolve, reject) => {
-        if(navigator.geolocation) {
-           navigator.geolocation.getCurrentPosition((position) => {
-             resolve(position);
-           });
-        }
-      })
-      .then((position) => {
-        store.dispatch(updateCoords(position.coords.latitude,position.coords.longitude));
-      });
+      this.goToCurrentLocation();
     }
 
+    //Go to user current location
+    goToCurrentLocation() {
+        new Promise((resolve, reject) => {
+          if(navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition((position) => {
+               resolve(position);
+             });
+          }
+        })
+        .then((position) => {
+          store.dispatch(updateCoords(position.coords.latitude,position.coords.longitude));
+        });
+    }
+
+    //Open or close the side menu
     openMenu() {
         return () => {
             document.getElementById("app-container").classList.toggle("menu-open");
@@ -42,9 +50,17 @@ class MapDOM extends React.Component {
                     <i className="fa fa-bars menu-open" aria-hidden="true" onClick={this.openMenu()}></i>
                 </header>
                 <div id="map">
-                    <GoogleMapReact bootstrapURLKeys={this.props.bootstrapURLKeys}
-                                    center={this.props.center}
-                                    zoom={this.props.zoom}>
+                    <GoogleMapReact
+                      center={this.props.center}
+                      zoom={this.props.zoom}
+                      bootstrapURLKeys={this.props.bootstrapURLKeys}>
+                      {this.props.markers.map((marker,key) => {
+                        return <Marker
+                                  key={"marker-"+key}
+                                  lat={marker.latitude}
+                                  lng={marker.longitude}
+                                  icon={"fa marker "+marker.icon} />;
+                      })}
                     </GoogleMapReact>
                 </div>
             </div>
@@ -55,7 +71,7 @@ class MapDOM extends React.Component {
 MapDOM.propTypes = {
   center: PropTypes.array,
   zoom: PropTypes.number,
-  bootstrapURLKeys: PropTypes.object
-
+  bootstrapURLKeys: PropTypes.object,
+  markers: PropTypes.array
 };
 export default MapDOM;

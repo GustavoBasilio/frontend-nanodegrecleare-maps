@@ -1,18 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import store from "../store";
-import { updateCoords , createCurrent} from "../actions/map";
+import { updateCoords } from "../actions/map";
+import { searchPlaces } from "../actions/search";
 import Marker from "./marker";
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
-
 
 @connect((store) => {
     return {
         center: store.map.center,
         zoom: store.map.zoom,
         bootstrapURLKeys: store.map.bootstrapURLKeys,
-        markers: store.map.markers
+        markers: store.map.markers,
+        results: store.search.results
     };
 })
 
@@ -29,10 +30,15 @@ class MapDOM extends React.Component {
              navigator.geolocation.getCurrentPosition((position) => {
                resolve(position);
              });
+          }else {
+            reject();
           }
         })
         .then((position) => {
-          store.dispatch(updateCoords(position.coords.latitude,position.coords.longitude));
+          if(position){
+            store.dispatch(updateCoords(position.coords.latitude,position.coords.longitude));
+            store.dispatch(searchPlaces(position.coords.latitude,position.coords.longitude));
+          }
         });
     }
 
@@ -57,8 +63,15 @@ class MapDOM extends React.Component {
                       {this.props.markers.map((marker,key) => {
                         return <Marker
                                   key={"marker-"+key}
-                                  lat={marker.latitude}
-                                  lng={marker.longitude}
+                                  lat={marker.position[0]}
+                                  lng={marker.position[1]}
+                                  icon={"fa marker "+marker.icon} />;
+                      })}
+                      {this.props.results && this.props.results.map((marker,key) => {
+                        return <Marker
+                                  key={"marker-"+key}
+                                  lat={marker.position[0]}
+                                  lng={marker.position[1]}
                                   icon={"fa marker "+marker.icon} />;
                       })}
                     </GoogleMapReact>
@@ -72,6 +85,7 @@ MapDOM.propTypes = {
   center: PropTypes.array,
   zoom: PropTypes.number,
   bootstrapURLKeys: PropTypes.object,
-  markers: PropTypes.array
+  markers: PropTypes.array,
+  results: PropTypes.array
 };
 export default MapDOM;

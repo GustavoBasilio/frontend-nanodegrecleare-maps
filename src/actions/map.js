@@ -4,9 +4,3 @@ export const updateCoords = (latitude,longitude) => {
         payload: [latitude, longitude]
     };
 };
-export const createCurrent = (marker) => {
-    return {
-        type: "CREATE_CURRENT",
-        payload: marker
-    };
-};

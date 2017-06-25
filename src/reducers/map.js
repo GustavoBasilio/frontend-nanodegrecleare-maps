@@ -1,8 +1,10 @@
+import {googleKey} from "../variables";
+
 const defaultState = {
     center: [0, 0],
     zoom: 15,
     bootstrapURLKeys: {
-      key: "AIzaSyBkUMIkAsP8A_zi654O2CUhA7s0I_QttT4"
+      key: googleKey
     },
     markers: []
 };
@@ -10,10 +12,13 @@ const defaultState = {
 export const mapReducer = (state=defaultState,action) => {
     switch(action.type){
         case "UPDATE_COORDS": {
-            return {...state, center: action.payload};
-        }
-        case "CREATE_CURRENT": {
-            return {...state, markers: action.payload};
+            return {...state,
+              center: action.payload,
+              markers: [{
+                position: action.payload,
+                icon: "current-marker fa-map-pin"
+              }]
+            };
         }
     }
     return state;

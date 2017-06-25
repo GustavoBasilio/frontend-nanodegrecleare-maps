@@ -23,6 +23,10 @@ module.exports = {
         compress: false,
         port: 8080,
         stats: "errors-only",
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            "X-Custom-Header": "yes"
+        },
         open: true
     },
     module: {

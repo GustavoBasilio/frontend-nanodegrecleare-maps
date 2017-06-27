@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {searchLocation} from "./actions/search";
+import {updateFilter} from "../actions/search";
 import store from "../store";
 
 
 @connect((store) => {
     return {
-        status: store.search.status,
-        results: store.search.results
+        status: store.status,
+        filter: store.filter,
+        markers: store.markers
     };
 })
 
 class Menu extends React.Component {
-    searchLocation() {
-      store.dispatch(searchLocation(document.getElementById('input-search').value));
+    filterLocation() {
+        store.dispatch(updateFilter(document.getElementById('input-search').value));
     }
     render() {
         return (
@@ -22,12 +23,19 @@ class Menu extends React.Component {
                 <h1>Near Bars</h1>
                 <div id="menu-search">
                     <form id="form-search">
-                        <input id="input-search" type="text" placeholder="Station Location" name="location" />
-                        <button id="submit-search" type="button" onClick={this.searchLocation()}><i className="fa fa-filter" aria-hidden="true"></i>Filtrar</button>
+                        <input id="input-search" type="text" placeholder="Station Location" name="location" onChange={this.filterLocation}/>
                     </form>
                     {(this.props.status == 1) &&  <i className="fa fa-spinner loading-icon" aria-hidden="true"></i>}
                     <ul id="search-results">
-                      {this.props.results}
+                      {this.props.markers && this.props.markers.map((marker,key) => {
+                        if(marker.name.toLowerCase().indexOf(this.props.filter.toLowerCase()) < 0 && this.props.filter != "") return;
+                        return (
+                            <li key={"marker-"+key}>
+                                <h2>{marker.name}</h2>
+                                <h3>{marker.address}</h3>
+                            </li>
+                        );
+                      })}       
                     </ul>
                 </div>
             </aside>
@@ -36,6 +44,8 @@ class Menu extends React.Component {
 }
 
 Menu.propTypes = {
-  status: PropTypes.number
+  status: PropTypes.number,
+  filter: PropTypes.string,
+  markers: PropTypes.array
 };
 export default Menu;

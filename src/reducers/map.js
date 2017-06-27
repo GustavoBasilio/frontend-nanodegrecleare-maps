@@ -1,6 +1,8 @@
 import {googleKey} from "../variables";
 
 const defaultState = {
+    status: 0,
+    filter: "",
     center: [0, 0],
     zoom: 15,
     bootstrapURLKeys: {
@@ -14,14 +16,23 @@ export const mapReducer = (state=defaultState,action) => {
         case "UPDATE_COORDS": {
             return {...state,
               center: action.payload,
-              markers: [{
+              current: {
                 position: action.payload,
                 icon: "current-marker fa-map-pin"
-              }]
+              }
             };
         }
+        case "SEARCH_PENDING": {
+          return {...state, status: 1};
+        }
+        case "SEARCH_REJECTED": {
+          return {...state, status: 3};
+        }
         case "SEARCH_COMPLETED": {
-          return {...state, status: 2, markers:[...state.markers,...action.payload]};
+          return {...state, status: 2, markers:action.payload};
+        }
+        case "UPDATE_FILTER": {
+          return {...state, filter:action.payload};
         }
     }
     return state;

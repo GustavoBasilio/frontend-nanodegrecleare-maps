@@ -64,7 +64,7 @@
     "uglify-js": "^3.0.19",
     "url-loader": "^0.5.9",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5",
+    "webpack-dev-server": "^2.5.0",
     "webpack-hot-middleware": "^2.18.0"
   }
 }

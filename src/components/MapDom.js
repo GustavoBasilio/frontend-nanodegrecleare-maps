@@ -9,11 +9,11 @@ import PropTypes from "prop-types";
 
 @connect((store) => {
     return {
-        center: store.map.center,
-        zoom: store.map.zoom,
-        bootstrapURLKeys: store.map.bootstrapURLKeys,
-        markers: store.map.markers,
-        results: store.search.results
+        center: store.center,
+        zoom: store.zoom,
+        bootstrapURLKeys: store.bootstrapURLKeys,
+        current: store.current,
+        markers: store.markers
     };
 })
 
@@ -60,19 +60,17 @@ class MapDOM extends React.Component {
                       center={this.props.center}
                       zoom={this.props.zoom}
                       bootstrapURLKeys={this.props.bootstrapURLKeys}>
-                      {this.props.markers.map((marker,key) => {
+                      <Marker
+                                  key="marker-current"
+                                  lat={this.props.center[0]}
+                                  lng={this.props.center[1]}
+                                  icon="fa marker current-marker fa-map-pin" />
+                      {this.props.markers && this.props.markers.map((marker,key) => {
                         return <Marker
                                   key={"marker-"+key}
                                   lat={marker.position[0]}
                                   lng={marker.position[1]}
-                                  icon={"fa marker "+marker.icon} />;
-                      })}
-                      {this.props.results && this.props.results.map((marker,key) => {
-                        return <Marker
-                                  key={"marker-"+key}
-                                  lat={marker.position[0]}
-                                  lng={marker.position[1]}
-                                  icon={"fa marker "+marker.icon} />;
+                                  icon="fa marker fa-beer"/>;
                       })}
                     </GoogleMapReact>
                 </div>
@@ -85,7 +83,7 @@ MapDOM.propTypes = {
   center: PropTypes.array,
   zoom: PropTypes.number,
   bootstrapURLKeys: PropTypes.object,
-  markers: PropTypes.array,
-  results: PropTypes.array
+  current: PropTypes.object,
+  markers: PropTypes.array
 };
 export default MapDOM;

@@ -20,6 +20,9 @@ export const mapReducer = (state=defaultState,action) => {
               }]
             };
         }
+        case "SEARCH_COMPLETED": {
+          return {...state, status: 2, markers:[...state.markers,...action.payload]};
+        }
     }
     return state;
 };

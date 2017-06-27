@@ -4,6 +4,7 @@ import store from "../store";
 import { updateCoords } from "../actions/map";
 import { searchPlaces } from "../actions/search";
 import Marker from "./marker";
+import InfoWindow from "./infowindow";
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 
@@ -13,6 +14,7 @@ import PropTypes from "prop-types";
         zoom: store.zoom,
         bootstrapURLKeys: store.bootstrapURLKeys,
         current: store.current,
+        infowindow: store.infowindow,
         markers: store.markers
     };
 })
@@ -49,6 +51,17 @@ class MapDOM extends React.Component {
         };
     }
 
+    showInfowindow() {
+        if(!this.props.infowindow.status) return;
+        let marker = this.props.infowindow.marker;
+        return <InfoWindow 
+                    lat={this.props.markers[marker].position[0]}
+                    lng={this.props.markers[marker].position[1]}
+                    name={this.props.markers[marker].name}
+                    address={this.props.markers[marker].address}
+                    image={this.props.markers[marker].image}/>;
+    }
+
     render() {
         return (
             <div id="map-container">
@@ -60,11 +73,13 @@ class MapDOM extends React.Component {
                       center={this.props.center}
                       zoom={this.props.zoom}
                       bootstrapURLKeys={this.props.bootstrapURLKeys}>
+
                       <Marker
-                                  key="marker-current"
-                                  lat={this.props.center[0]}
-                                  lng={this.props.center[1]}
-                                  icon="fa marker current-marker fa-map-pin" />
+                        key="marker-current"
+                        lat={this.props.center[0]}
+                        lng={this.props.center[1]}
+                        icon="fa marker current-marker fa-map-pin" />
+
                       {this.props.markers && this.props.markers.map((marker,key) => {
                         return <Marker
                                   key={"marker-"+key}
@@ -72,6 +87,7 @@ class MapDOM extends React.Component {
                                   lng={marker.position[1]}
                                   icon="fa marker fa-beer"/>;
                       })}
+                      {this.showInfowindow()}
                     </GoogleMapReact>
                 </div>
             </div>
@@ -84,6 +100,7 @@ MapDOM.propTypes = {
   zoom: PropTypes.number,
   bootstrapURLKeys: PropTypes.object,
   current: PropTypes.object,
+  infowindow: PropTypes.object,
   markers: PropTypes.array
 };
 export default MapDOM;

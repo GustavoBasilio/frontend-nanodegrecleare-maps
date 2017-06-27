@@ -1,2 +1,2 @@
 
-export const googleKey = "AIzaSyBkUMIkAsP8A_zi654O2CUhA7s0I_QttT4";
+export const googleKey = "AIzaSyBGPXEZvdwrRI2UMsIomwRVRbSVJsoK6OU";

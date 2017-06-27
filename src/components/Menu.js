@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {updateFilter} from "../actions/search";
+import {updateFilter, updateInfoMarker} from "../actions/search";
 import store from "../store";
 
 
@@ -14,9 +14,15 @@ import store from "../store";
 })
 
 class Menu extends React.Component {
+
     filterLocation() {
         store.dispatch(updateFilter(document.getElementById('input-search').value));
     }
+
+    openInfoWindow(key,e) {
+        store.dispatch(updateInfoMarker(key));
+    }
+
     render() {
         return (
             <aside id="menu-container">
@@ -30,7 +36,7 @@ class Menu extends React.Component {
                       {this.props.markers && this.props.markers.map((marker,key) => {
                         if(marker.name.toLowerCase().indexOf(this.props.filter.toLowerCase()) < 0 && this.props.filter != "") return;
                         return (
-                            <li key={"marker-"+key}>
+                            <li key={"marker-"+key} data-key={key} onClick={this.openInfoWindow.bind(this, key)}>
                                 <h2>{marker.name}</h2>
                                 <h3>{marker.address}</h3>
                             </li>

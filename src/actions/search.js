@@ -19,6 +19,7 @@ export const searchPlaces = (latitude,longitude, query) => {
         position: [place.geometry.location.lat,place.geometry.location.lng],
         address: place.formatted_address,
         name: place.name,
+        image: place.photos,
         id: place.place_id
       });
     });
@@ -40,5 +41,12 @@ export const updateFilter = (filter) => {
   return {
     type: "UPDATE_FILTER",
     payload: filter
+  };
+};
+
+export const updateInfoMarker = (key) => {
+  return {
+    type: "UPDATE_INFO",
+    payload: key
   };
 };

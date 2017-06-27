@@ -8,6 +8,10 @@ const defaultState = {
     bootstrapURLKeys: {
       key: googleKey
     },
+    infowindow: {
+      status: 0,
+      marker: 0
+    },
     markers: []
 };
 
@@ -33,6 +37,12 @@ export const mapReducer = (state=defaultState,action) => {
         }
         case "UPDATE_FILTER": {
           return {...state, filter:action.payload};
+        }
+        case "UPDATE_INFO": {
+          if(state.infowindow.status && state.infowindow.marker == action.payload)
+            return {...state, infowindow:{status: 0, marker: action.payload}};
+          else 
+            return {...state, infowindow:{status: 1, marker: action.payload}};
         }
     }
     return state;

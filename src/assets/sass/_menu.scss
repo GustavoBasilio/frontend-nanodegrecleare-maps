@@ -1,7 +1,8 @@
 #menu-container {
     width: $menu_width;
     background-color: $black;
-    position: relative;
+    display: flex;
+    flex-direction: column;
     h1{
       font-family: Open Sans;
       font-weight: lighter;
@@ -11,47 +12,44 @@
       text-align: center;
       padding: 15px 0;
     }
-    #form-search {
+    #menu-search {
       display: flex;
-      display: -webkit-flex;
-      flex-direction: row;
-      padding: 0 10px;
-      justify-content: center;
-      #input-search {
-        width: 90%;
-        border-radius: 2px;
-        border: none;
-        padding: 5px 10px;
-        margin-bottom: 20px
+      flex-direction: column;
+      #form-search {
+        display: block;
+        padding: 0 10px;
+        margin-bottom: 20px;
+        #input-search {
+          width: 90%;
+          border-radius: 2px;
+          border: none;
+          padding: 5px 10px;
+          margin-left: 5%;
+        }
       }
-    }
-    #search-results {
-      height: auto;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: 120px;
-      li {
-        padding: 10px 20px;
-        cursor: pointer;
-        h2 {
-          color: $darkBlue;
-          font-size: 20px;
-          text-transform: uppercase;
-          font-family: Open sans;
-        }
-        h3 {
-          color: $white;
-          font-size: 14px;
-          font-family: Roboto;
-        }
-        &:hover {
-          background-color: $darkGray;
+      #search-results {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        flex-grow: 1;
+        li {
+          padding: 10px 20px;
+          cursor: pointer;
+          h2 {
+            color: $darkBlue;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-family: Open sans;
+          }
           h3 {
-            color: $black;
+            color: $white;
+            font-size: 14px;
+            font-family: Roboto;
+          }
+          &:hover {
+            background-color: $darkGray;
+            h3 {
+              color: $black;
+            }
           }
         }
       }

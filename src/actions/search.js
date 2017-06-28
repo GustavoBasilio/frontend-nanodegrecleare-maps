@@ -4,14 +4,7 @@ import {googleKey} from "../variables";
 
 export const searchPlaces = (latitude,longitude, query) => {
   let url =  "https://maps.googleapis.com/maps/api/place/textsearch/json?key="+googleKey+"&radius=500&location="+latitude+','+longitude+"&query=bar";
-  let instanse = axios.create({
-    headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-        }
-  });
-  instanse.get(url)
+  axios.get(url)
   .then((response) => {
     let markers = [];
     response.data.results.map((place) => {

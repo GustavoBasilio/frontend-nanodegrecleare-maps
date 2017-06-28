@@ -23,9 +23,17 @@ class Menu extends React.Component {
         store.dispatch(updateInfoMarker(key));
     }
 
+    //Open or close the side menu
+    openMenu() {
+        return () => {
+            document.getElementById("app-container").classList.toggle("menu-open");
+        };
+    }
+
     render() {
         return (
             <aside id="menu-container">
+                <i className="fa fa-times close-menu" aria-hidden="true" onClick={this.openMenu()}></i>
                 <h1>Near Bars</h1>
                 <div id="menu-search">
                     <form id="form-search">

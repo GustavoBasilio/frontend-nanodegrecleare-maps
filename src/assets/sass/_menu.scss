@@ -3,6 +3,7 @@
     background-color: $black;
     display: flex;
     flex-direction: column;
+    position: relative;
     h1{
       font-family: Open Sans;
       font-weight: lighter;
@@ -11,6 +12,18 @@
       font-size: 1.8em;
       text-align: center;
       padding: 15px 0;
+    }
+    .close-menu {
+      color: #fff;
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px 15px;
+      font-size: 24px;
+      display: none;
+      @media screen and (max-width: $break_small){
+        display: block;
+      }
     }
     #menu-search {
       display: flex;

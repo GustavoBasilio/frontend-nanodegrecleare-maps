@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import store from "../store";
 import { updateCoords } from "../actions/map";
-import { searchPlaces } from "../actions/search";
+import { searchPlaces, updateInfoMarker} from "../actions/search";
 import Marker from "./marker";
 import InfoWindow from "./infowindow";
 import GoogleMapReact from "google-map-react";
@@ -44,6 +44,11 @@ class MapDOM extends React.Component {
         });
     }
 
+    //Open info window
+    openInfoWindow(key,e) {
+        store.dispatch(updateInfoMarker(key));
+    }
+
     //Open or close the side menu
     openMenu() {
         return () => {
@@ -75,16 +80,18 @@ class MapDOM extends React.Component {
                       bootstrapURLKeys={this.props.bootstrapURLKeys}>
 
                       <Marker
-                        key="marker-current"
+                        key="marker-cuupdateInfoMarkerrrent"
+                        openInfo={{}}
                         lat={this.props.center[0]}
                         lng={this.props.center[1]}
-                        icon="fa marker current-marker fa-map-pin" />
+                        icon="fa marker current-marker fa-map-pin"/>
 
                       {this.props.markers && this.props.markers.map((marker,key) => {
                         return <Marker
                                   key={"marker-"+key}
                                   lat={marker.position[0]}
                                   lng={marker.position[1]}
+                                  openInfo={{id: key, callback: this.openInfoWindow}}
                                   icon="fa marker fa-beer"/>;
                       })}
                       {this.showInfowindow()}

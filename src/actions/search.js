@@ -18,7 +18,6 @@ export const searchPlaces = (latitude,longitude, query) => {
           position: [place.geometry.location.lat(),place.geometry.location.lng()],
           address: place.vicinity,
           name: place.name,
-          image: place.photos,
           id: place.place_id
         });
       });

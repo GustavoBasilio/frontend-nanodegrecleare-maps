@@ -63,8 +63,7 @@ class MapDOM extends React.Component {
                     lat={this.props.markers[marker].position[0]}
                     lng={this.props.markers[marker].position[1]}
                     name={this.props.markers[marker].name}
-                    address={this.props.markers[marker].address}
-                    image={this.props.markers[marker].image}/>;
+                    address={this.props.markers[marker].address}/>;
     }
 
     render() {

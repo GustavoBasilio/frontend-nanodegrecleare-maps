@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const InfoWindow = (props) => (
-  <div className="info-window">
-    <span>{props.name}</span>
-    <span>{props.address}</span>
-    <span>{props.image && props.image.copyright}</span>
-  </div>
+  <article className="info-window">
+    <h3>{props.name}</h3>
+    <h4>{props.address}</h4>
+    {props.image && props.image[0].getUrl()}
+  </article>
 );
 
 InfoWindow.propTypes = {

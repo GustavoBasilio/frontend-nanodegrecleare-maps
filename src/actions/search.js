@@ -3,21 +3,28 @@ import store from "../store";
 import {googleKey} from "../variables";
 
 export const searchPlaces = (latitude,longitude, query) => {
-  let url =  "https://maps.googleapis.com/maps/api/place/textsearch/json?key="+googleKey+"&radius=500&location="+latitude+','+longitude+"&query=bar";
-  axios.get(url)
-  .then((response) => {
-    let markers = [];
-    response.data.results.map((place) => {
-      markers.push({
-        position: [place.geometry.location.lat,place.geometry.location.lng],
-        address: place.formatted_address,
-        name: place.name,
-        image: place.photos,
-        id: place.place_id
+  if(typeof google != "undefined"){
+    let mapAux = new google.maps.Map(document.createElement('div'));
+    let service = new google.maps.places.PlacesService(mapAux);
+    let location = new google.maps.LatLng(latitude,longitude);
+    service.nearbySearch({
+      location: location,
+      radius: '500',
+      types: ['bar']
+    }, (response,status) => {
+      let markers = [];
+      response.map((place) => {
+        markers.push({
+          position: [place.geometry.location.lat(),place.geometry.location.lng()],
+          address: place.vicinity,
+          name: place.name,
+          image: place.photos,
+          id: place.place_id
+        });
       });
+      store.dispatch(searchCompleted(markers));
     });
-    store.dispatch(searchCompleted(markers));
-  });
+  }
   return {
       type: "SEARCH_PENDING"
   };

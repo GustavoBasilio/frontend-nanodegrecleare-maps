@@ -4,9 +4,10 @@ const defaultState = {
     status: 0,
     filter: "",
     center: [0, 0],
-    zoom: 15,
+    zoom: 18,
     bootstrapURLKeys: {
-      key: googleKey
+      key: googleKey,
+      libraries: 'places'
     },
     infowindow: {
       status: 0,

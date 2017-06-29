@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {updateFilter, updateInfoMarker} from "../actions/search";
 import store from "../store";
 
-
+//Redux connecting store to props
 @connect((store) => {
     return {
         status: store.status,
@@ -13,12 +13,15 @@ import store from "../store";
     };
 })
 
+//Statefull component that represents the menu
 class Menu extends React.Component {
-
+    
+    //Filter results
     filterLocation() {
         store.dispatch(updateFilter(document.getElementById('input-search').value));
     }
 
+    //Open info window
     openInfoWindow(key,e) {
         store.dispatch(updateInfoMarker(key));
     }

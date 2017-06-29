@@ -8,6 +8,7 @@ import InfoWindow from "./infowindow";
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 
+//Redux connecting store to props
 @connect((store) => {
     return {
         center: store.center,
@@ -19,6 +20,7 @@ import PropTypes from "prop-types";
     };
 })
 
+//Statefull component that represents the map and the header
 class MapDOM extends React.Component {
 
     componentWillMount(){
@@ -56,6 +58,7 @@ class MapDOM extends React.Component {
         };
     }
 
+    //Creates the infowindow if it is visible
     showInfowindow() {
         if(!this.props.infowindow.status) return;
         let marker = this.props.infowindow.marker;

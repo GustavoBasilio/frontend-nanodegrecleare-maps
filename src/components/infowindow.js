@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+//Stateless component that represents the infowindow of the map
 const InfoWindow = (props) => (
   <article className="info-window">
     <h3>{props.name}</h3>

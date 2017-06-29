@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const BabiliPlugin = require("babili-webpack-plugin");
 
 module.exports = {
     entry: path.resolve(__dirname, "src/index.js"),
@@ -11,11 +12,18 @@ module.exports = {
         filename: "bundle.js"
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '\'' + process.env.NODE_ENV + '\'',
+            },
+        }),
         new HtmlWebpackPlugin({
             title: "Home",
             template: path.resolve(__dirname, "src/index.html"),
-            filename: "index.html"
-        })
+            filename: "index.html",
+            minify: {collapseWhitespace: true}
+        }),
+        new BabiliPlugin()
     ],
     module: {
         rules: [

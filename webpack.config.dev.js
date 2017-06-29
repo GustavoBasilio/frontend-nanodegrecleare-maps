@@ -14,6 +14,7 @@ module.exports = {
             title: "Home",
             template: path.resolve(__dirname, "src/index.html"),
             filename: "index.html"
+
         }),
         new webpack.HotModuleReplacementPlugin()
     ],
